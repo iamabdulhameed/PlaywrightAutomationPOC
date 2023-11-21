@@ -1,0 +1,22 @@
+{
+  "name": "playwrightautomationpoc",
+  "version": "1.0.0",
+  "description": "A POC kind of project to showcase a E2E framework for Playwright.",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamabdulhameed/PlaywrightAutomationPOC.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamabdulhameed/PlaywrightAutomationPOC/issues"
+  },
+  "homepage": "https://github.com/iamabdulhameed/PlaywrightAutomationPOC#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@types/node": "^20.9.2"
+  }
+}
