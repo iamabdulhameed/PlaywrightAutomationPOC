@@ -20,14 +20,14 @@ test.describe('Feature: Login', () => {
     })
 
     test.beforeEach('Repetitive Steps', async () => {
-        await basePage.page.goto('') 
+        await basePage.page.goto('')
     })
 
     test('Get first product name', async () => {
         await homeSteps.getAllProducts()
     })
 
-    test('Place an order', async ({ page }) => {
+    test('Place an order', async () => {
         await homeSteps.addProductToCart('adidas original')
         await homeSteps.validateCartNo()
 
