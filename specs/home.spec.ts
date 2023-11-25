@@ -16,11 +16,11 @@ test.describe('Feature: Login', () => {
         await basePage.initializeBrowser()
         loginSteps = new LoginSteps(basePage)
         homeSteps = new HomeSteps(basePage)
+        await loginSteps.doLogin(data.username, data.password)
     })
 
     test.beforeEach('Repetitive Steps', async () => {
-        await basePage.page.goto('')
-        await loginSteps.doLogin(data.username, data.password)
+        await basePage.page.goto('') 
     })
 
     test('Get first product name', async () => {

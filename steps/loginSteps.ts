@@ -12,10 +12,11 @@ export class LoginSteps {
     }
 
     public async doLogin(email: string, pwd: string) {
+        await this.page.goto('')
         await this.page.locator(loginPage.userEmail).fill(email)
         await this.page.locator(loginPage.userPwd).fill(pwd)
         await this.page.locator(loginPage.loginButton).click()
-        await expect(this.page.locator(homePage.menuHeaderItems)).toBeVisible()
+        await expect(this.page.locator(homePage.menuHeaderItems).first()).toBeVisible()
     }
 
 }

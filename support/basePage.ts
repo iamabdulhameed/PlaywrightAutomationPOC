@@ -6,11 +6,11 @@ export class BasePage {
 
     async initializeBrowser(browserName: string = 'chrome') {
         if (browserName == 'chrome') {
-            this.page = await (await chromium.launch()).newPage()
+            this.page = await (await (await chromium.launch()).newContext()).newPage()
         } else if (browserName == 'firefox') {
-            this.page = await (await firefox.launch()).newPage()
+            this.page = await (await (await firefox.launch()).newContext()).newPage()
         } else if (browserName == 'safari') {
-            this.page = await (await webkit.launch()).newPage()
+            this.page = await (await (await webkit.launch()).newContext()).newPage()
         } else {
             throw new Error("Please mention the broswer name.")
         }

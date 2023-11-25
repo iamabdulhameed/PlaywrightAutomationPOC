@@ -15,6 +15,7 @@ export class HomeSteps {
     }
 
     async getAllProducts() {
+        await expect(this.page.locator(homePage.addTocartButton).first()).toBeVisible()
         let allProductsName: string[] = await this.page.locator(homePage.productsName).allTextContents()
         for (let index = 0; index < allProductsName.length; index++) {
             console.log(allProductsName[index])
@@ -22,7 +23,7 @@ export class HomeSteps {
     }
 
     async addProductToCart(productName: string) {
-        await this.page.locator(homePage.productsName).first().waitFor()
+        this.page.locator(homePage.addTocartButton).first().waitFor({ state: "visible" })
         let allProductsName: string[] = await this.page.locator(homePage.productsName).allTextContents()
         for (let index = 0; index < allProductsName.length; index++) {
             console.log(allProductsName[index])
