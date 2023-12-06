@@ -1,17 +1,22 @@
-import { test, request, expect, APIRequestContext } from '@playwright/test'
+import { expect, request, test } from '@playwright/test'
 import { APIUtils } from '../utils/APIUtils'
-import { describe } from 'node:test'
+import { OrderSteps } from '../../steps/orderSteps'
+import { BasePage } from '../../support/basePage'
 
 let token: string
 let apiUtils: APIUtils
+let orderSteps: OrderSteps
+let basePage: BasePage
 
 test.describe('TEST SUITE', () => {
 
     test.beforeAll(async () => {
+        basePage = new BasePage()
+        await basePage.initializeBrowser()
         const apiContext = await request.newContext()
         apiUtils = new APIUtils(apiContext)
         token = await apiUtils.getToken()
-        // console.log('TOKEN', token)
+        orderSteps = new OrderSteps(basePage)
     })
 
     test('verify login with API', async ({ page }) => {
@@ -43,7 +48,18 @@ test.describe('TEST SUITE', () => {
         expect(await page.getByText('Thank you for Shopping With Us').isVisible()).toBeTruthy()
         const address = await page.locator('div.address').first().locator('p').nth(1).textContent()
         expect(address).toContain('China')
+    })
 
+    test.only('Delete an order', async () => {
+        await basePage.page.addInitScript((value) => {
+            window.localStorage.setItem('token', value)
+        }, token)
+        
+        await basePage.page.goto('https://rahulshettyacademy.com/client/')
+        const orderId = await apiUtils.getOrderId(token)
+        console.log(orderId)
+        orderSteps.navigateToOrdersTab()
+        await basePage.page.pause()
 
     })
 })
